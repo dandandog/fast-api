@@ -1,0 +1,23 @@
+spring:
+  redis:
+    database: 10
+    host: 127.0.0.1
+    port: 6379
+    password:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/fast-admin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+          username: root
+          password: password
+  mail:
+    host: smtp.qq.com
+    port: 456
+    username: 704365036@qq.com
+    password: bshjkpejobbpbfac
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

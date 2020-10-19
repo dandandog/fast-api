@@ -1,0 +1,48 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8080
+spring:
+  messages:
+    basename: framework-messages, api-messages
+  config:
+    name:
+  application:
+    name: fast-api
+  profiles:
+    active: @profileActive@
+  redis:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 1200
+  datasource:
+    dynamic:
+      druid:
+        initial-size: 10
+        max-active: 100
+        max-wait: 60000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        #Oracle需要打开注释
+        validation-query: SELECT 1 FROM DUAL
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+
+
+
+mybatis-plus:
+  type-aliases-package: pers.dandandog.**.entity
+  typeEnumsPackage: pers.dandandog.**.entity.enums
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    cache-enabled: true
+fast-code:
+  map-struct:
+    url-domain: https://www.myelephant.cn
