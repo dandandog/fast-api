@@ -26,6 +26,10 @@
         </dependency>
         <dependency>
             <groupId>com.dandandog.fastcode</groupId>
+            <artifactId>framework-wx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dandandog.fastcode</groupId>
             <artifactId>framework-mapstruct</artifactId>
         </dependency>
         <dependency>

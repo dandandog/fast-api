@@ -35,8 +35,6 @@ spring:
         test-on-borrow: false
         test-on-return: false
 
-
-
 mybatis-plus:
   type-aliases-package: pers.dandandog.**.entity
   typeEnumsPackage: pers.dandandog.**.entity.enums
@@ -44,5 +42,15 @@ mybatis-plus:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
     cache-enabled: true
 fast-code:
+  wx:
+    mas:
+      - appid:  wxa026c0412559eafb
+        secret: 3111cbbc13b43b890874d8c8edbeb570
+        msgDataFormat: JSON
+    pays:
+      - app-id:  wxa026c0412559eafb
+        secret: 3111cbbc13b43b890874d8c8edbeb570
+        mch-id: 1602228876
+        mch-key: YkbqPcxrQzknxPMv8VNHxi8pWzrbyEF8
   map-struct:
     url-domain: https://www.myelephant.cn

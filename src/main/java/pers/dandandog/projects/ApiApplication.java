@@ -1,5 +1,6 @@
 package pers.dandandog.projects;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +11,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 /**
  * @author JohnnyLiu
  */
-@SpringBootApplication
-@MapperScan(value = "pers.dandandog.projects", annotationClass = Mapper.class)
+@SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
+@MapperScan(basePackages = "pers.dandandog.**.dao", annotationClass = Mapper.class)
 public class ApiApplication extends SpringBootServletInitializer {
 
     @Override

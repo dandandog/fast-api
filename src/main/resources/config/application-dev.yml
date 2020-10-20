@@ -1,6 +1,6 @@
 spring:
   redis:
-    database: 10
+    database: 9
     host: 127.0.0.1
     port: 6379
     password:
@@ -21,3 +21,10 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+fast-code:
+  swagger:
+    enable: true
+  apiScans:
+    - group-name: wx
+    - base-package: pers.dandandog.projects.wx.controller.wx
