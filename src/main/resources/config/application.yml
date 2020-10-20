@@ -43,7 +43,7 @@ mybatis-plus:
     cache-enabled: true
 fast-code:
   wx:
-    mas:
+    mini-apps:
       - appid:  wxa026c0412559eafb
         secret: 3111cbbc13b43b890874d8c8edbeb570
         msgDataFormat: JSON
