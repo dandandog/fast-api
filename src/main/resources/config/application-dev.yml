@@ -24,8 +24,7 @@ mybatis-plus:
 
 fast-code:
   swagger:
-    enable: true
-  api-scans:
-    - group-name: wx
-    - base-package: pers.dandandog.projects.wx.controller.wx
-    - base-path: /v1
+    enabled: true
+    api-scans:
+      - group-name: wx
+        base-package: pers.dandandog.projects

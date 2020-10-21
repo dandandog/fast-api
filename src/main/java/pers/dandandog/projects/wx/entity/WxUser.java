@@ -18,28 +18,55 @@ public class WxUser extends BaseEntity {
     /**
      * 小程序openid
      */
-    private String openId;
 
-    /**
-     * 头像
-     */
-    private String avatar;
+    private String openId;
 
     /**
      * 昵称
      */
-    private String nickname;
+    private String nickName;
 
     /**
-     * 小程序session
+     * 性别
+     */
+    private String gender;
+    /**
+     * 语言
+     */
+    private String language;
+    /**
+     * 市
+     */
+    private String city;
+    /**
+     * 省
+     */
+    private String province;
+    /**
+     * 国
+     */
+    private String country;
+    /**
+     * 头像
+     */
+    private String avatarUrl;
+    /**
+     * 唯一键
+     */
+    private String unionId;
+
+    /**
+     * 密钥
+     */
+    private String secret;
+    /**
+     * sessionKey
      */
     private String sessionKey;
 
-    /**
-     * 密碼
-     */
-    private String secret;
+    public WxUser() {
 
+    }
 
     public WxUser(String openId) {
         this.openId = openId;
