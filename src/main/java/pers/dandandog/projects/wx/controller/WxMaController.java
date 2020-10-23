@@ -1,6 +1,5 @@
 package pers.dandandog.projects.wx.controller;
 
-import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -15,7 +14,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import me.chanjar.weixin.common.error.WxErrorException;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +31,6 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/v1/wx")
 @Api(value = "System API", tags = {"微信相关API"})
-@ConditionalOnClass(WxMaService.class)
 public class WxMaController extends ApiController {
 
     private static final String APP_GIFT = "gift";
@@ -46,7 +43,7 @@ public class WxMaController extends ApiController {
 
     @GetMapping("/index")
     @ApiOperation(value = "获取token", response = String.class)
-    public ApiResponse<String> index() throws Exception {
+    public ApiResponse<String> index() {
         return success("hello world");
     }
 

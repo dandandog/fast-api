@@ -28,3 +28,10 @@ fast-code:
     api-scans:
       - group-name: wx
         base-package: pers.dandandog.projects
+  jwt:
+    token-header: Authorization
+    secret: api-secret
+    expiration: 36000
+    issuer: xiaoxiang
+    audience: minapp
+    expire-second: 36000

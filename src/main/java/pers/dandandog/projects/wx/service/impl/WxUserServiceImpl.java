@@ -1,5 +1,6 @@
 package pers.dandandog.projects.wx.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.dandandog.framework.core.service.impl.BaseServiceImpl;
@@ -35,8 +36,11 @@ public class WxUserServiceImpl extends BaseServiceImpl<WxUserDao, WxUser> implem
         WxUser user = Optional.ofNullable(getById(jwtToken.getUniqueId())).orElseThrow(() ->
                 new AuthenticationException("用户不存在"));
         user.setSecret(RandomUtil.randomString(16));
-        saveOrUpdate(user);
-        return JwtTokenUtil.refreshToken(jwtToken.getToken(), user.getSecret());
+        String newToken = JwtTokenUtil.refreshToken(jwtToken.getToken(), user.getSecret());
+        if (!ObjectUtil.equal(newToken, jwtToken.getToken())) {
+            saveOrUpdate(user);
+        }
+        return newToken;
     }
 
     @Override
