@@ -5,11 +5,11 @@ import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.dandandog.framework.core.service.impl.BaseServiceImpl;
 import com.dandandog.framework.wx.jwt.JwtToken;
-import com.dandandog.framework.wx.service.AuthTokenService;
+import com.dandandog.framework.wx.service.WxTokenService;
 import com.dandandog.framework.wx.utils.JwtTokenUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Service;
-import pers.dandandog.projects.wx.dao.WxUserDao;
+import pers.dandandog.projects.wx.dao.AppUserDao;
 import pers.dandandog.projects.wx.entity.AppUser;
 import pers.dandandog.projects.wx.service.WxUserService;
 
@@ -19,7 +19,7 @@ import java.util.Optional;
  * @author JohnnyLiu
  */
 @Service
-public class WxUserServiceImpl extends BaseServiceImpl<WxUserDao, AppUser> implements WxUserService, AuthTokenService {
+public class WxUserServiceImpl extends BaseServiceImpl<AppUserDao, AppUser> implements WxUserService, WxTokenService {
 
 
     @Override

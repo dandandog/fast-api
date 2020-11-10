@@ -8,5 +8,5 @@ import pers.dandandog.projects.wx.entity.AppUser;
  * @author JohnnyLiu
  */
 @Mapper
-public interface WxUserDao extends BaseMapper<AppUser> {
+public interface AppUserDao extends BaseMapper<AppUser> {
 }

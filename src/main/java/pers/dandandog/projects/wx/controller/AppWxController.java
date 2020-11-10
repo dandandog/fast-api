@@ -7,7 +7,7 @@ import com.dandandog.framework.mapstruct.MapperUtil;
 import com.dandandog.framework.rest.controller.ApiController;
 import com.dandandog.framework.rest.model.ApiResult;
 import com.dandandog.framework.wx.config.WxConfig;
-import com.dandandog.framework.wx.service.AuthTokenService;
+import com.dandandog.framework.wx.service.WxTokenService;
 import com.dandandog.framework.wx.utils.JwtHeaderUtil;
 import io.swagger.annotations.*;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -36,7 +36,7 @@ public class AppWxController extends ApiController {
     private WxUserService wxUserService;
 
     @Resource
-    private AuthTokenService authTokenService;
+    private WxTokenService wxTokenService;
 
     @GetMapping("/index")
     @ApiOperation(value = "index", response = String.class)
@@ -44,15 +44,15 @@ public class AppWxController extends ApiController {
         return success("hello world");
     }
 
-    @GetMapping("/login")
-    @ApiOperation(value = "登入获取token")
+    @GetMapping("/token")
+    @ApiOperation(value = "获取token")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "code", required = true, dataType = "String", value = "微信code")
     })
     @ApiResponse(code = 20000, message = "操作成功", response = String.class)
-    public ApiResult<String> login(@RequestParam String code, HttpServletResponse response) throws WxErrorException {
+    public ApiResult<String> token(@RequestParam String code, HttpServletResponse response) throws WxErrorException {
         WxMaJscode2SessionResult session = WxConfig.getMaService(APP_GIFT).getUserService().getSessionInfo(code);
-        String token = authTokenService.generateToken(session.getSessionKey(), session.getOpenid());
+        String token = wxTokenService.generateToken(session.getSessionKey(), session.getOpenid());
         JwtHeaderUtil.setAuthHeader(response, token);
         return success(token);
     }

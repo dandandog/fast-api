@@ -24,7 +24,7 @@ public class AppUser extends BaseEntity {
     /**
      * 昵称
      */
-    private String nickName;
+    private String nickname;
 
     /**
      * 性别
