@@ -1,12 +1,12 @@
 package pers.dandandog.projects.wx.service;
 
-import com.dandandog.framework.core.service.ICacheService;
-import pers.dandandog.projects.wx.entity.WxUser;
+import com.baomidou.mybatisplus.extension.service.IService;
+import pers.dandandog.projects.wx.entity.AppUser;
 
 /**
  * @author JohnnyLiu
  */
-public interface WxUserService extends ICacheService<WxUser> {
+public interface WxUserService extends IService<AppUser> {
 
 
 }

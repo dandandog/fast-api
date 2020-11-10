@@ -12,8 +12,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("wx_user")
-public class WxUser extends BaseEntity {
+@TableName("app_user")
+public class AppUser extends BaseEntity {
 
     /**
      * 小程序openid
@@ -64,11 +64,11 @@ public class WxUser extends BaseEntity {
      */
     private String sessionKey;
 
-    public WxUser() {
+    public AppUser() {
 
     }
 
-    public WxUser(String openId) {
+    public AppUser(String openId) {
         this.openId = openId;
     }
 }

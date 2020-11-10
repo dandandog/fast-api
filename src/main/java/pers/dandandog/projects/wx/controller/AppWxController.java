@@ -3,7 +3,7 @@ package pers.dandandog.projects.wx.controller;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.dandandog.framework.mapstruct.MapperRepo;
+import com.dandandog.framework.mapstruct.MapperUtil;
 import com.dandandog.framework.rest.controller.ApiController;
 import com.dandandog.framework.rest.model.ApiResult;
 import com.dandandog.framework.wx.config.WxConfig;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pers.dandandog.projects.wx.entity.WxUser;
-import pers.dandandog.projects.wx.model.vo.WxUserVo;
+import pers.dandandog.projects.wx.entity.AppUser;
+import pers.dandandog.projects.wx.model.vo.AppUserVo;
 import pers.dandandog.projects.wx.service.WxUserService;
 
 import javax.annotation.Resource;
@@ -26,9 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author JohnnyLiu
  */
 @RestController
-@RequestMapping("/v1/wx")
+@RequestMapping("/wx")
 @Api(value = "System API", tags = {"微信相关API"})
-public class WxMaController extends ApiController {
+public class AppWxController extends ApiController {
 
     private static final String APP_GIFT = "gift";
 
@@ -64,12 +64,12 @@ public class WxMaController extends ApiController {
             @ApiImplicitParam(name = "encryptedData", required = true, dataType = "String", value = "加密的数据"),
             @ApiImplicitParam(name = "iv", required = true, dataType = "String", value = "偏移量")
     })
-    @ApiResponse(code = 200, message = "OK", response = WxUserVo.class)
-    public ApiResult<WxUserVo> user(@RequestParam String code, @RequestParam String encryptedData, @RequestParam String iv) throws WxErrorException {
+    @ApiResponse(code = 200, message = "OK", response = AppUserVo.class)
+    public ApiResult<AppUserVo> user(@RequestParam String code, @RequestParam String encryptedData, @RequestParam String iv) {
         WxMaUserInfo wxMaUserInfo = WxConfig.getMaService(APP_GIFT).getUserService().getUserInfo(code, encryptedData, iv);
-        WxUser wxUser = MapperRepo.mapFrom(wxMaUserInfo, WxUser.class);
-        wxUserService.saveOrUpdate(wxUser, new LambdaQueryWrapper<WxUser>().eq(WxUser::getOpenId, wxMaUserInfo.getOpenId()));
-        WxUserVo vo = MapperRepo.mapTo(wxUser, WxUserVo.class);
+        AppUser wxUser = MapperUtil.mapFrom(wxMaUserInfo, AppUser.class);
+        wxUserService.saveOrUpdate(wxUser, new LambdaQueryWrapper<AppUser>().eq(AppUser::getOpenId, wxMaUserInfo.getOpenId()));
+        AppUserVo vo = MapperUtil.mapTo(wxUser, AppUserVo.class);
         return success(vo);
     }
 

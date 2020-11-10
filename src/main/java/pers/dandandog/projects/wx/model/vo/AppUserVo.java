@@ -1,14 +1,17 @@
 package pers.dandandog.projects.wx.model.vo;
 
-import com.dandandog.framework.mapstruct.model.Url;
+import com.dandandog.framework.mapstruct.MapperUtil;
+import com.dandandog.framework.mapstruct.model.MapperVo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author JohnnyLiu
  */
 @Data
-public class WxUserVo {
+@EqualsAndHashCode(callSuper = true)
+public class AppUserVo extends MapperVo {
 
     @ApiModelProperty(
             value = "昵称",
@@ -20,5 +23,5 @@ public class WxUserVo {
             value = "头像",
             example = "http://www.xxx.com/avatar.jpg"
     )
-    private Url avatarUrl;
+    private MapperUtil avatarUrl;
 }

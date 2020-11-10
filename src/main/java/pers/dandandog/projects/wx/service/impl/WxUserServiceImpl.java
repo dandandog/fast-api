@@ -10,7 +10,7 @@ import com.dandandog.framework.wx.utils.JwtTokenUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Service;
 import pers.dandandog.projects.wx.dao.WxUserDao;
-import pers.dandandog.projects.wx.entity.WxUser;
+import pers.dandandog.projects.wx.entity.AppUser;
 import pers.dandandog.projects.wx.service.WxUserService;
 
 import java.util.Optional;
@@ -19,13 +19,13 @@ import java.util.Optional;
  * @author JohnnyLiu
  */
 @Service
-public class WxUserServiceImpl extends BaseServiceImpl<WxUserDao, WxUser> implements WxUserService, AuthTokenService {
+public class WxUserServiceImpl extends BaseServiceImpl<WxUserDao, AppUser> implements WxUserService, AuthTokenService {
 
 
     @Override
     public String generateToken(String sessionKey, String openId) {
-        WxUser user = Optional.ofNullable(getOne(new LambdaQueryWrapper<WxUser>().eq(WxUser::getOpenId, openId)))
-                .orElse(new WxUser(openId))
+        AppUser user = Optional.ofNullable(getOne(new LambdaQueryWrapper<AppUser>().eq(AppUser::getOpenId, openId)))
+                .orElse(new AppUser(openId))
                 .setSessionKey(sessionKey)
                 .setSecret(RandomUtil.randomString(16));
         return saveOrUpdate(user) ? JwtTokenUtil.generateToken(user.getId(), user.getSecret()) : null;
@@ -33,7 +33,7 @@ public class WxUserServiceImpl extends BaseServiceImpl<WxUserDao, WxUser> implem
 
     @Override
     public String refreshToken(JwtToken jwtToken) {
-        WxUser user = Optional.ofNullable(getById(jwtToken.getUniqueId())).orElseThrow(() ->
+        AppUser user = Optional.ofNullable(getById(jwtToken.getUniqueId())).orElseThrow(() ->
                 new AuthenticationException("用户不存在"));
         user.setSecret(RandomUtil.randomString(16));
         String newToken = JwtTokenUtil.refreshToken(jwtToken.getToken(), user.getSecret());

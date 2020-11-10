@@ -1,13 +1,13 @@
 package pers.dandandog.projects.wx.model.mapper;
 
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import com.dandandog.framework.mapstruct.StandardMapper;
+import com.dandandog.framework.mapstruct.IMapper;
 import org.mapstruct.Mapper;
-import pers.dandandog.projects.wx.entity.WxUser;
+import pers.dandandog.projects.wx.entity.AppUser;
 
 /**
  * @author JohnnyLiu
  */
 @Mapper(componentModel = "spring")
-public interface WxUserMapper extends StandardMapper<WxUser, WxMaUserInfo> {
+public interface AppUserMapper extends IMapper<AppUser, WxMaUserInfo> {
 }
